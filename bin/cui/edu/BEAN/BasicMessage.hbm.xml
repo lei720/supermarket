@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-10 13:51:26 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cui.edu.BEAN.BasicMessage" table="basicMessage" catalog="supermarket">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="10" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="age" />
+        </property>
+        <property name="sex" type="string">
+            <column name="sex" length="50" />
+        </property>
+        <property name="dept" type="java.lang.Integer">
+            <column name="dept" />
+        </property>
+        <property name="headship" type="java.lang.Integer">
+            <column name="headship" />
+        </property>
+    </class>
+</hibernate-mapping>

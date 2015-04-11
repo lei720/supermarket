@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+        <property name="hibernate.connection.password">000</property>
+        <property name="hibernate.connection.url">jdbc:sqlserver://localhost:1433;DatabaseName=supermarket</property>
+        <property name="hibernate.connection.username">sa</property>
+        <property name="hibernate.default_schema">dbo</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</property>
+        <property name="hibernate.search.autoregister_listeners">false</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping resource="cui/edu/BEAN/Contact.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Employee.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/OutDepot.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Depot.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Stock.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/User.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Headship.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/TbWare.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/JoinDepot.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Sell.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Dept.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/BasicMessage.hbm.xml" />
+        <mapping resource="cui/edu/BEAN/Provide.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+<type-mapping>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+</type-mapping>
+<table-filter match-catalog="supermarket" match-name="basicMessage"/>
+  <table-filter match-catalog="supermarket" match-name="contact"/>
+  <table-filter match-catalog="supermarket" match-name="depot"/>
+  <table-filter match-catalog="supermarket" match-name="dept"/>
+  <table-filter match-catalog="supermarket" match-name="employee"/>
+  <table-filter match-catalog="supermarket" match-name="headship"/>
+  <table-filter match-catalog="supermarket" match-name="joinDepot"/>
+  <table-filter match-catalog="supermarket" match-name="outDepot"/>
+  <table-filter match-catalog="supermarket" match-name="provide"/>
+  <table-filter match-catalog="supermarket" match-name="sell"/>
+  <table-filter match-catalog="supermarket" match-name="stock"/>
+  <table-filter match-catalog="supermarket" match-name="tb_ware"/>
+  <table-filter match-catalog="supermarket" match-name="user"/>
+</hibernate-reverse-engineering>
