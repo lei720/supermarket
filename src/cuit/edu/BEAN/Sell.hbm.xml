@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-13 10:16:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cuit.edu.BEAN.Sell" table="sell" catalog="supermarket">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="sellName" type="string">
+            <column name="sellName" length="50" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="50" />
+        </property>
+        <property name="linkman" type="string">
+            <column name="linkman" length="50" />
+        </property>
+        <property name="linkPhone" type="string">
+            <column name="linkPhone" length="50" />
+        </property>
+        <property name="faxNum" type="string">
+            <column name="faxNum" length="50" />
+        </property>
+        <property name="postNum" type="string">
+            <column name="postNum" length="50" />
+        </property>
+        <property name="bankNum" type="string">
+            <column name="bankNum" length="50" />
+        </property>
+        <property name="netAddress" type="string">
+            <column name="netAddress" length="50" />
+        </property>
+        <property name="emaillAddress" type="string">
+            <column name="emaillAddress" length="50" />
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

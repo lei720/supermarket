@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-13 10:16:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cuit.edu.BEAN.JoinDepot" table="joinDepot" catalog="supermarket">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="oid" type="string">
+            <column name="oid" length="50" />
+        </property>
+        <property name="did" type="java.lang.Integer">
+            <column name="dId" />
+        </property>
+        <property name="wareName" type="string">
+            <column name="wareName" length="40" />
+        </property>
+        <property name="joinTime" type="string">
+            <column name="joinTime" length="50" />
+        </property>
+        <property name="weight" type="java.lang.Double">
+            <column name="weight" precision="15" scale="0" />
+        </property>
+        <property name="remark" type="string">
+            <column name="remark" length="200" />
+        </property>
+    </class>
+</hibernate-mapping>

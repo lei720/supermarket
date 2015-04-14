@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-13 10:16:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cuit.edu.BEAN.Employee" table="employee" catalog="supermarket">
+        <composite-id name="id" class="cuit.edu.BEAN.EmployeeId">
+            <key-property name="id" type="java.lang.Integer">
+                <column name="id" />
+            </key-property>
+            <key-property name="did" type="java.lang.Integer">
+                <column name="dID" />
+            </key-property>
+            <key-property name="ename" type="string">
+                <column name="eName" length="50" />
+            </key-property>
+            <key-property name="job" type="string">
+                <column name="job" length="50" />
+            </key-property>
+            <key-property name="laborage" type="java.lang.Double">
+                <column name="laborage" precision="15" scale="0" />
+            </key-property>
+            <key-property name="phone" type="string">
+                <column name="phone" length="50" />
+            </key-property>
+            <key-property name="qqnumber" type="string">
+                <column name="QQNumber" length="50" />
+            </key-property>
+            <key-property name="email" type="string">
+                <column name="email" length="50" />
+            </key-property>
+        </composite-id>
+    </class>
+</hibernate-mapping>

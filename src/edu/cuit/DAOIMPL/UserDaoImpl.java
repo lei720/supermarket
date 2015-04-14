@@ -5,8 +5,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import cui.edu.BEAN.User;
-
+import cuit.edu.BEAN.User;
 import cuit.edu.DAO.UserDao;
 import edu.cuit.util.HibernateUtil;
 

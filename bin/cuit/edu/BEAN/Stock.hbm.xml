@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2015-4-13 10:16:13 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="cuit.edu.BEAN.Stock" table="stock" catalog="supermarket">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="sname" type="string">
+            <column name="sName" length="50" />
+        </property>
+        <property name="orderId" type="string">
+            <column name="orderId" length="50" />
+        </property>
+        <property name="consignmentDate" type="string">
+            <column name="consignmentDate" length="50" />
+        </property>
+        <property name="baleName" type="string">
+            <column name="baleName" length="50" />
+        </property>
+        <property name="count" type="string">
+            <column name="count" length="50" />
+        </property>
+        <property name="money" type="java.lang.Double">
+            <column name="money" precision="15" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

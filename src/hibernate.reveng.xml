@@ -17,6 +17,7 @@
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 	<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
 </type-mapping>
+
 <table-filter match-catalog="supermarket" match-name="basicMessage"/>
   <table-filter match-catalog="supermarket" match-name="contact"/>
   <table-filter match-catalog="supermarket" match-name="depot"/>
@@ -28,6 +29,6 @@
   <table-filter match-catalog="supermarket" match-name="provide"/>
   <table-filter match-catalog="supermarket" match-name="sell"/>
   <table-filter match-catalog="supermarket" match-name="stock"/>
-  <table-filter match-catalog="supermarket" match-name="tb_ware"/>
   <table-filter match-catalog="supermarket" match-name="user"/>
+  <table-filter match-catalog="supermarket" match-name="ware"/>
 </hibernate-reverse-engineering>

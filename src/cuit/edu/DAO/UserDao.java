@@ -1,7 +1,7 @@
 package cuit.edu.DAO;
 import java.sql.*;
 
-import cui.edu.BEAN.User;
+import cuit.edu.BEAN.User;
 
 public interface UserDao {
 /*GetConnection connection = new GetConnection();
