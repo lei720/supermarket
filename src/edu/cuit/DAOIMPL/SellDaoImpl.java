@@ -20,8 +20,9 @@ public class SellDaoImpl implements SellDao {
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		session.save(sell);
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		session.getTransaction().commit();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	@Override
@@ -30,15 +31,15 @@ public class SellDaoImpl implements SellDao {
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		ArrayList<Sell> arrayList=new ArrayList<Sell>();
 		session.beginTransaction();
-		String sql="from Stock";
+		String sql="from Sell";
 		Query query=session.createQuery(sql);
 		List<Sell> list=query.list();
 		for (Sell Sell : list) {
 			arrayList.add(Sell);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		/*session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -51,12 +52,13 @@ public class SellDaoImpl implements SellDao {
 		Query query=session.createQuery(sql);
 		query.setInteger(0, id);
 		List<Sell> list=query.list();
+		session.getTransaction().commit();
 		while (list.iterator().hasNext()) {
 			Sell sell=(Sell) list.iterator().next();
 			return sell;
 		}
-		session.getTransaction().commit();
-		HibernateUtil.getSessionFactory().close();
+		
+		//HibernateUtil.getSessionFactory().close();
 		return null;
 	}
 
@@ -74,8 +76,8 @@ public class SellDaoImpl implements SellDao {
 			arrayList.add(sell);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -93,8 +95,8 @@ public class SellDaoImpl implements SellDao {
 			arrayList.add(sell);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -113,8 +115,8 @@ public class SellDaoImpl implements SellDao {
 			arrayList.add(sell);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		/*session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -125,8 +127,8 @@ public class SellDaoImpl implements SellDao {
 		session.beginTransaction();
 		session.update(sell);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 
 	@Override
@@ -139,8 +141,8 @@ public class SellDaoImpl implements SellDao {
 		query.setInteger(0, id);
 		query.executeUpdate();
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 }

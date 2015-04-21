@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.SellDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Sell;
 import edu.cuit.dao.FeelDao;
@@ -43,14 +44,15 @@ public class UpdateSellFrame extends JFrame {
 	private JLabel label;
 	private JButton closeButton;
 	JTextArea remarkTextArea = new JTextArea();
-	Sell sell = null;
+	cuit.edu.BEAN.Sell sell = null;
 	/**
 	 * Create the frame.
 	 */
 	public UpdateSellFrame() {
 		setTitle("修改销售商窗体");	
-		SellDao dao = new SellDao();
-		 try {
+		//SellDao dao = new SellDao();
+		cuit.edu.DAO.SellDao dao=new SellDaoImpl(); 
+		try {
 			  File file = new File("file.txt");
 	            FileInputStream fin = new FileInputStream(file);
 	            int count =  fin.read();	           
@@ -162,7 +164,7 @@ public class UpdateSellFrame extends JFrame {
 
 		emaillTextField = new JTextField();
 		emaillTextField.setBackground(new Color(210, 105, 30));
-		emaillTextField.setText(sell.getEmallAddress());
+		emaillTextField.setText(sell.getEmaillAddress());
 		emaillTextField.setColumns(10);
 		emaillTextField.setBounds(114, 220, 164, 25);
 		contentPane.add(emaillTextField);
@@ -179,7 +181,7 @@ public class UpdateSellFrame extends JFrame {
 		uodatetButton.setBackground(new Color(210, 105, 30));
 		uodatetButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SellDao dao = new SellDao();				
+				cuit.edu.DAO.SellDao dao=new SellDaoImpl();				
 				sell.setSellName(cNameTextField.getText());
 				sell.setAddress(addressTextField.getText());
 				sell.setLinkman(linkNameTextField.getText());
@@ -187,8 +189,8 @@ public class UpdateSellFrame extends JFrame {
 				sell.setBankNum(bankNumTextField.getText());
 				sell.setFaxNum(faxesTextField.getText());
 				sell.setPostNum(postNumTextField.getText());
-				sell.setEmallAddress(emaillTextField.getText());
-				sell.setRenark(remarkTextArea.getText());
+				sell.setEmaillAddress(emaillTextField.getText());
+				sell.setRemark(remarkTextArea.getText());
 				sell.setNetAddress(netAddressTextField.getText());				
 				dao.updateSell(sell);
 				repaint();

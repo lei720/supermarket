@@ -179,7 +179,7 @@ public class SellDao {
 	}
 
 	// 定义修改供应商信息方法
-	public void updateSell(Sell sell) {
+	public void updateSell(cuit.edu.BEAN.Sell sell) {
 		conn = connection.getCon();
 		try {
 			String sql = "update tb_sell set sellName = ?,address = ?,linkman = ?,linkPhone=?,faxNum=?,postNum=?,"
@@ -193,7 +193,7 @@ public class SellDao {
 			statement.setString(6, sell.getPostNum());
 			statement.setString(7, sell.getBankNum());
 			statement.setString(8, sell.getNetAddress());
-			statement.setString(9, sell.getEmallAddress());
+			statement.setString(9, sell.getEmaillAddress());
 			statement.setString(10, sell.getRemark());
 			statement.setInt(11, sell.getId());
 			statement.executeUpdate();

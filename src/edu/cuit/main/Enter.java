@@ -13,11 +13,12 @@ import javax.swing.border.EmptyBorder;
 
 import com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel;
 
+import edu.cuit.DAOIMPL.UserDaoImpl;
 import edu.cuit.bean.User;
 import edu.cuit.dao.UserDao;
 import edu.cuit.mainFrame.RemoveButtomFrame;
-
 import edu.cuit.panel.ProgressPanel;
+
 
 
 import javax.swing.ImageIcon;
@@ -140,8 +141,10 @@ public class Enter extends JFrame {
 			enterButton.setBorder(null);				// 取消边框	
 enterButton.addActionListener(new ActionListener() {		//按钮的单击事件
 	public void actionPerformed(ActionEvent e) {
-		UserDao userDao = new UserDao();					//创建保存有操作数据库类对象
-		User user = userDao.getUser(userNameTextField.getText(),passwordField.getText());	//以用户添加的用户名与密码为参数调用查询用户方法
+		//UserDao userDao = new UserDao();					//创建保存有操作数据库类对象
+		cuit.edu.DAO.UserDao userDao=new UserDaoImpl();
+		//User user = userDao.getUser(userNameTextField.getText(),passwordField.getText());	//以用户添加的用户名与密码为参数调用查询用户方法
+	cuit.edu.BEAN.User user=userDao.getUser(userNameTextField.getText(),passwordField.getText());
 		ConPane.setVisible(true);
 	
 	//	setContentPane(progressPanel);

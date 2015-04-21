@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.WareDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Ware;
 import edu.cuit.dao.FeelDao;
@@ -116,7 +117,8 @@ public class InsertWareFrame extends JFrame {
 		insertButton.setBackground(new Color(210, 105, 30));
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WareDao dao = new WareDao();
+			//	WareDao dao = new WareDao();
+				cuit.edu.DAO.WareDao dao=new WareDaoImpl();
 				String cName = cNameTextField.getText();
 				String bewrite = bewriteTextField.getText();
 				String unit = stockTextField.getText();
@@ -124,9 +126,9 @@ public class InsertWareFrame extends JFrame {
 				String member = memberTextField.getText();	
 				String spec = unitTextField.getText();
 				String stock = stockTextField.getText();
-				float memberPrice =0;
-				float unitPrice = 0;
-				float retailPrice = 0;
+				Double memberPrice =0.0;
+				Double unitPrice = 0.0;
+				Double retailPrice = 0.0;
 				if((cName.equals(""))||(bewrite.equals(""))||(unit.equals(""))||
 						(retail.equals(""))||(member.equals(""))){
 					JOptionPane.showMessageDialog(getContentPane(), "将带星号的信息填写完整！",
@@ -134,17 +136,17 @@ public class InsertWareFrame extends JFrame {
 					return;
 				}
 				try{
-					unitPrice = Float.parseFloat(unit);
-					retailPrice = Float.parseFloat(retail);
-					memberPrice = Float.parseFloat(member);
+					unitPrice = Double.parseDouble(unit);
+					retailPrice = Double.parseDouble(retail);
+					memberPrice = Double.parseDouble(member);
 					
 				}catch (Exception ee) {
 					JOptionPane.showMessageDialog(getContentPane(), "进货价、零售价、会员价必须是数字！",
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}				
-			
-				Ware ware = new Ware();
+			cuit.edu.BEAN.Ware ware=new cuit.edu.BEAN.Ware();
+				//Ware ware = new Ware();
 				ware.setWareName(cName);
 				ware.setWarBewrite(bewrite);
 				ware.setAssociatorPrice(memberPrice);

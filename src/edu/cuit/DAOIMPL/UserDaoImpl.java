@@ -16,16 +16,17 @@ public class UserDaoImpl implements UserDao {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		Query query=session.createQuery("from Users where userName=? and passWord=?");
+		Query query=session.createQuery("from User as u where u.userName=? and u.passWord=?");
 		query.setString(0, userName);
 		query.setString(1, passWord);
 		List<User> list=query.list();
+		session.getTransaction().commit();
 		while (list.iterator().hasNext()) {
 			User User=(User) list.iterator().next();
 			return User;
 		}
-		session.getTransaction().commit();
-		HibernateUtil.closeSessionFactory();
+	
+		//HibernateUtil.closeSessionFactory();
 		return null;
 	}
 

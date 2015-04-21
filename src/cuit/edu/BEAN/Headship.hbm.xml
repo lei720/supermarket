@@ -6,7 +6,7 @@
     <class name="cuit.edu.BEAN.Headship" table="headship" catalog="supermarket">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="headshipName" type="string">
             <column name="headshipName" length="50" />

@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import edu.cuit.DAOIMPL.WareDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Ware;
 import edu.cuit.dao.FeelDao;
@@ -31,7 +32,7 @@ public class WarePanel extends JPanel {
 	private JPanel message;
 	private JTextField nameTextField;
 	private JTable table;	
-	WareDao wareDao = new WareDao();
+	cuit.edu.DAO.WareDao waredao=new WareDaoImpl();;
 	WareModel wareModel = new WareModel();
 	/**
 	 * Create the panel.
@@ -69,9 +70,9 @@ public class WarePanel extends JPanel {
 					return;					
 				}
 				if(!name.equals("")){
-					 List list = wareDao.selectWareByName(name);
+					 List list = waredao.selectWareByName(name);
 					 for(int i = 0;i<list.size();i++){
-						 Ware ware = (Ware)list.get(i);						
+						 cuit.edu.BEAN.Ware ware = (cuit.edu.BEAN.Ware)list.get(i);						
 						 wareModel.addRow(new Object[] { ware.getId(), ware.getWareName(),
 									ware.getWarBewrite(),ware.getSpec(),
 									ware.getStockPrice(),ware.getRetailPrice(),ware.getAssociatorPrice()
@@ -133,7 +134,7 @@ public class WarePanel extends JPanel {
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				} else {
-					wareDao.deleteWare(Integer.parseInt(column));				
+					waredao.deleteWare(Integer.parseInt(column));				
 					JOptionPane.showMessageDialog(getParent(), "数据删除成功！",
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					repaint();
@@ -148,10 +149,10 @@ public class WarePanel extends JPanel {
 		message.add(scrollPane_2);
 		table = new JTable(wareModel);
 		repaint();
-		List list = wareDao.selectWare();
+		List list = waredao.selectWare();
 		wareModel.setRowCount(0);
 		for (int i = 0; i < list.size(); i++) {
-			Ware ware = (Ware)list.get(i);						
+			cuit.edu.BEAN.Ware ware = (cuit.edu.BEAN.Ware)list.get(i);						
 			 wareModel.addRow(new Object[] { ware.getId(), ware.getWareName(),
 						ware.getWarBewrite(), ware.getSpec(),
 						ware.getStockPrice(),ware.getRetailPrice(),ware.getAssociatorPrice()

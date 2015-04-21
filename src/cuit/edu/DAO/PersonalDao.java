@@ -20,5 +20,6 @@ public interface PersonalDao {
 	public void updatertMessage(BasicMessage message);
 	public void updatertContact(Contact contact) ;
 	public void deleteBasicMessage(int id);
-	
+	public int selectBasicMessageByName(String name);
+	public void deleteContact(int hid);
 }

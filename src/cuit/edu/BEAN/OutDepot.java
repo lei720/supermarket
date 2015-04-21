@@ -11,7 +11,7 @@ public class OutDepot implements java.io.Serializable {
 	private Integer did;
 	private String wname;
 	private String outDate;
-	private Double wight;
+	private Float wight;
 	private String remark;
 
 	public OutDepot() {
@@ -22,7 +22,7 @@ public class OutDepot implements java.io.Serializable {
 	}
 
 	public OutDepot(int id, Integer did, String wname, String outDate,
-			Double wight, String remark) {
+			Float wight, String remark) {
 		this.id = id;
 		this.did = did;
 		this.wname = wname;
@@ -63,11 +63,11 @@ public class OutDepot implements java.io.Serializable {
 		this.outDate = outDate;
 	}
 
-	public Double getWight() {
+	public Float getWight() {
 		return this.wight;
 	}
 
-	public void setWight(Double wight) {
+	public void setWight(Float wight) {
 		this.wight = wight;
 	}
 

@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import cuit.edu.DAO.PersonalDao;
+import edu.cuit.DAOIMPL.PersonalDaoImpl;
 import edu.cuit.bean.BasicMessage;
 import edu.cuit.bean.Contact;
 import edu.cuit.bean.Dept;
@@ -39,8 +41,9 @@ public class InsertPersonnelFrame extends JFrame {
 	private JTextField faxTextField;
 	private JTextField emailTextField;
 	private JTextField addressTextField;
-	private PersonnelDao dao = new PersonnelDao();
-	BasicMessage message = new BasicMessage();
+	//private PersonnelDao dao = new PersonnelDao();
+	private PersonalDao dao=new PersonalDaoImpl(); 
+	cuit.edu.BEAN.BasicMessage message = new cuit.edu.BEAN.BasicMessage();
 	int hid = 0;	
 	String nameMessgae = "";
 	/**
@@ -141,7 +144,7 @@ ageTextField.addKeyListener(new KeyAdapter() {
 		List headName = dao.selectHeadship();
 		String headship[] = new String[headName.size()];
 		for(int j = 0;j<headName.size();j++){
-			Headship headshi = (Headship)headName.get(j);
+			cuit.edu.BEAN.Headship headshi = (cuit.edu.BEAN.Headship)headName.get(j);
 			headship[j] = headshi.getHeadshipName();
 		}
 		final JComboBox headshipComboBox = new JComboBox(headship);
@@ -297,8 +300,9 @@ insertutton.addActionListener(new ActionListener() {
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				Contact contact = new Contact();
+				cuit.edu.BEAN.Contact contact = new cuit.edu.BEAN.Contact();
 				hid = dao.selectBasicMessageByName(nameTextField.getText());
+			
 				contact.setHid(hid);
 				contact.setContact(contactTextField.getText());
 				contact.setOfficePhone(officePhoneTextField.getText());

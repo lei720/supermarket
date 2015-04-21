@@ -1,9 +1,11 @@
 package edu.cuit.jbutton;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 import edu.cuit.util.GetDate;
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Depot;
 import edu.cuit.bean.JoinDepot;
 import edu.cuit.bean.Stock;
@@ -17,7 +19,7 @@ public class ButtonEditor extends DefaultCellEditor {
   protected JButton button;
   private String    label;
   private boolean   isPushed;
-  private StockDao dao = new StockDao();
+  private cuit.edu.DAO.StockDao dao=new StockDaoImpl();;
   public ButtonEditor(JCheckBox checkBox) {
     super(checkBox);
     button = new JButton();
@@ -45,12 +47,12 @@ public class ButtonEditor extends DefaultCellEditor {
    			  File file = new File("files.txt");
    	            FileInputStream fin = new FileInputStream(file);
    	            int id =  fin.read();    
-   	            Stock stock = dao.selectStockByid(id);
+   	            cuit.edu.BEAN.Stock stock = dao.selectStockByid(id);
    	            JoinDepot joinDepot = new JoinDepot();
    	            joinDepot.setoId(stock.getOrderId());
    	            System.out.println("did:"+did);
    	            joinDepot.setdId(did);
-   	            joinDepot.setWareName(stock.getsName());
+   	            joinDepot.setWareName(stock.getSname());
    	            GetDate getDate = new GetDate();
    	            String date = getDate.getDateTime();
    	            joinDepot.setJoinTime(date);

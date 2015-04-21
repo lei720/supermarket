@@ -3,10 +3,10 @@
 "F://workspace/supermarket/src/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 2015-4-13 10:16:13 by Hibernate Tools 3.4.0.CR1 -->
 <hibernate-mapping>
-    <class name="cuit.edu.BEAN.Contact" table="contact" catalog="supermarket">
+    <class name="cuit.edu.BEAN.Contact" table="contacts" catalog="supermarket">
         <id name="id" type="int">
             <column name="id" />
-            <generator class="assigned" />
+            <generator class="native" />
         </id>
         <property name="hid" type="java.lang.Integer">
             <column name="hid" />
@@ -18,7 +18,7 @@
             <column name="officePhone" length="30" />
         </property>
         <property name="fax" type="string">
-            <column name="fax" length="20" not-null="true" />
+            <column name="fax" length="20" />
         </property>
         <property name="email" type="string">
             <column name="email" length="50" />

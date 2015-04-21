@@ -1,11 +1,15 @@
 package edu.cuit.jbutton;
 import javax.swing.*;
 import javax.swing.table.*;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
+
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Stock;
 import edu.cuit.dao.StockDao;
+
 import java.awt.Color;
 public class JButtonTableExample extends JPanel {
 	  public JButtonTableExample(){
@@ -18,7 +22,7 @@ public class JButtonTableExample extends JPanel {
 	    dm.setRowCount(20);
 	    JTable table = new JTable(dm);
 	    table.setBackground(new Color(210, 105, 30));
-	    StockDao dao = new StockDao();
+	    cuit.edu.DAO.StockDao dao=new StockDaoImpl();
 	    List list = dao.selectStock();
 	    for(int i = 0;i<list.size();i++){
 	    	Stock stock = (Stock)list.get(i);

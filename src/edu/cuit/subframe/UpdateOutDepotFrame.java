@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.OutDepotDaoImpl;
 import edu.cuit.bean.JoinDepot;
 import edu.cuit.bean.OutDepot;
 import edu.cuit.bean.Provide;
@@ -44,14 +45,14 @@ public class UpdateOutDepotFrame extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	OutDepotDao dao = new OutDepotDao();
+	private cuit.edu.DAO.OutDepotDao dao=new OutDepotDaoImpl();
 	private JComboBox dIdcomboBox;
 	JTextArea remarkTextArea = new JTextArea();
 	private JTextField wighttextField;
 	private JLabel label_4;
 	JButton button;
 	JComboBox comboBox;
-	OutDepot outDepot = new OutDepot();
+	cuit.edu.BEAN.OutDepot outDepot = new cuit.edu.BEAN.OutDepot();
 	/**
 	 * Create the frame.
 	 */
@@ -70,6 +71,7 @@ public class UpdateOutDepotFrame extends JFrame {
 	            int count =  fin.read();	           
 	            file.delete();
 	            outDepot = dao.selectOutDepotByid(count);
+	            
 	        } catch (Exception e) {	           
 	            e.printStackTrace();
 	        }
@@ -105,7 +107,7 @@ public class UpdateOutDepotFrame extends JFrame {
 				String joinTime = joinTimeTextField.getText();
 				String wight = wighttextField.getText();
 				String wName = comboBox.getSelectedItem().toString();
-				float depotWight = 0;
+				Float depotWight ;
 				if((did.equals(""))|(joinTime.equals("")) ||(wight.equals(""))){
 					JOptionPane.showMessageDialog(getContentPane(), "请将带星号的内容填写完整！",
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
@@ -118,8 +120,9 @@ public class UpdateOutDepotFrame extends JFrame {
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;					
 				}
-				OutDepotDao dao = new OutDepotDao();
-				float wFloat = outDepot.getWight();
+				//OutDepotDao dao = new OutDepotDao();
+				cuit.edu.DAO.OutDepotDao dao=new OutDepotDaoImpl();
+				Float wFloat = outDepot.getWight();
 				if(wFloat<depotWight){
 					JOptionPane.showMessageDialog(getContentPane(), "仓库中只有"+wFloat+"千克了！",
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
@@ -130,7 +133,7 @@ public class UpdateOutDepotFrame extends JFrame {
 				outDepot.setOutDate(joinTimeTextField.getText());
 				outDepot.setWight(depotWight);
 				outDepot.setRemark(remarkTextArea.getText());
-				outDepot.setwName(wName);
+				outDepot.setWname(wName);
 				dao.updateOutDepot(outDepot);
 				if(wFloat>depotWight){
 				dao.updateJoinAdd(idid,wName,depotWight);
@@ -233,7 +236,7 @@ public class UpdateOutDepotFrame extends JFrame {
 		}		
 		comboBox = new JComboBox(orderName);
 		comboBox.setBackground(new Color(210, 105, 30));
-		comboBox.setSelectedItem(outDepot.getwName());
+		comboBox.setSelectedItem(outDepot.getWname());
 		comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				

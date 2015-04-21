@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.List;
 
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Stock;
 import edu.cuit.dao.StockDao;
 import edu.cuit.jbutton.ButtonEditor;
@@ -18,7 +19,7 @@ public class JButtonTableExample extends JPanel {
                      new Object[]{"是否入库","编号","货品名称","订单号","交货日期","进货商","金额","数量"});	                     
 	    dm.removeRow(0);
 	    JTable table = new JTable(dm);
-	    StockDao dao = new StockDao();
+	    cuit.edu.DAO.StockDao dao=new StockDaoImpl();
 	    List list = dao.selectStock();
 	    for(int i = 0;i<list.size();i++){
 	    	Stock stock = (Stock)list.get(i);

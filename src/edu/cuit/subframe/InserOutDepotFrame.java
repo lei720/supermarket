@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.OutDepotDaoImpl;
 import edu.cuit.bean.JoinDepot;
 import edu.cuit.bean.OutDepot;
 import edu.cuit.bean.Provide;
@@ -42,13 +43,14 @@ public class InserOutDepotFrame extends JFrame {
 	private JLabel label_1;
 	private JLabel label_2;
 	private JLabel label_3;
-	OutDepotDao dao = new OutDepotDao();
+//	OutDepotDao dao = new OutDepotDao();
+	private cuit.edu.DAO.OutDepotDao dao=new OutDepotDaoImpl();
 	private JComboBox dIdcomboBox;
 	JTextArea remarkTextArea = new JTextArea();
 	private JTextField wighttextField;
 	private JLabel label_4;
 	JButton button;
-	JComboBox comboBox;
+	 JComboBox comboBox;
 	
 	/**
 	 * Create the frame.
@@ -106,7 +108,8 @@ public class InserOutDepotFrame extends JFrame {
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;					
 				}
-				OutDepotDao dao = new OutDepotDao();
+				//OutDepotDao dao = new OutDepotDao();
+				cuit.edu.DAO.OutDepotDao dao=new OutDepotDaoImpl();
 				float wFloat = dao.selectJoinDepotAndDate(comboBox.getSelectedItem().toString(),Integer.parseInt(did));
 				System.out.println("comboBox :"+comboBox.getSelectedItem().toString());
 				System.out.println("INTEGER："+Integer.parseInt(did));
@@ -115,13 +118,13 @@ public class InserOutDepotFrame extends JFrame {
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				OutDepot outDepot = new OutDepot();
+				cuit.edu.BEAN.OutDepot outDepot = new cuit.edu.BEAN.OutDepot();
 				int idid = Integer.parseInt(did);
 				outDepot.setDid(idid);
 				outDepot.setOutDate(joinTimeTextField.getText());
 				outDepot.setWight(depotWight);
 				outDepot.setRemark(remarkTextArea.getText());
-				outDepot.setwName(wName);
+				outDepot.setWname(wName);
 				dao.insertOutDepot(outDepot);
 				dao.updateJoin(idid,wName,depotWight);
 				JOptionPane.showMessageDialog(getContentPane(), "数据添加成功！",
@@ -171,17 +174,58 @@ public class InserOutDepotFrame extends JFrame {
 			did[j] = (Integer)listDid.get(j);
 		}
 		dIdcomboBox = new JComboBox(did);
+
+		
+		String str = dIdcomboBox.getSelectedItem().toString();
+		JoinDepotDao dao2 = new JoinDepotDao();
+		List list2 = dao2.selectNameBydId(Integer.parseInt(str));
+		String[] date=new String[list2.size()];
+		for (int i = 0; i < list2.size(); i++) {		//循环遍历查询结果集
+			date[i]=(String) list2.get(i);
+			//comboBox.addItem(list2.get(i));		//像姓名下拉列表中添加元素				
+			
+		}
+		comboBox=new JComboBox(date);
+		comboBox.setBackground(new Color(210, 105, 30));
+		
+		
+	//	comboBox.removeAllItems();
+	
+	//	this.repaint();
+		//comboBox.setVisible(true);
+	//	comboBox.setSelectedIndex(0);
+		//contentPane.add(comboBox);
+	/*new Thread(new Runnable() {
+		
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			for (int i = 0; i < list2.size(); i++) {		//循环遍历查询结果集
+				//comboBox.removeAllItems();
+			
+				comboBox.addItem(list2.get(i));		//像姓名下拉列表中添加元素				
+			
+			}
+			repaint();
+		}
+	}).start();*/
+	//System.out.println(comboBox.toString());
+	//repaint();
+	//repaint();
+		
 		dIdcomboBox.setBackground(new Color(210, 105, 30));
 		dIdcomboBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				comboBox.removeAllItems();
+				System.out.println("didselect: "+dIdcomboBox.getSelectedItem().toString());	
 				String str = dIdcomboBox.getSelectedItem().toString();
 				JoinDepotDao dao = new JoinDepotDao();
 				List list = dao.selectNameBydId(Integer.parseInt(str));
 				for (int i = 0; i < list.size(); i++) {		//循环遍历查询结果集
 					comboBox.addItem(list.get(i));		//像姓名下拉列表中添加元素				
 				}
-				repaint();
+				
+		
 			}
 		});
 		dIdcomboBox.setBounds(101, 33, 164, 21);
@@ -222,21 +266,22 @@ public class InserOutDepotFrame extends JFrame {
 		});
 		button.setBounds(566, 73, 71, 23);
 		contentPane.add(button);	
-		List listName = dao.selectOutDepotNames(Integer.parseInt(dIdcomboBox.getSelectedItem().toString()));
+	/*	List listName = dao.selectOutDepotNames(Integer.parseInt(dIdcomboBox.getSelectedItem().toString()));
 		String [] orderName = new String[listName.size()+1];
 		orderName[0] = "";
 		for(int j = 0;j<listName.size();j++){
 			orderName[j+1] = listName.get(j).toString(); 
-		}		
-		comboBox = new JComboBox(orderName);
+		}		*/
+	//	comboBox = new JComboBox(orderName);
 		comboBox.setBackground(new Color(210, 105, 30));
-		comboBox.addItemListener(new ItemListener() {
+	/*	comboBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
 				
 			}
-		});
+		});*/
 		comboBox.setBounds(392, 33, 164, 21);
 		contentPane.add(comboBox);
+		this.setVisible(true);
 	}
 	protected void do_closeButton_actionPerformed(ActionEvent arg0) {
 		this.setVisible(false);

@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.WareDaoImpl;
 import edu.cuit.bean.Sell;
 import edu.cuit.bean.Ware;
 import edu.cuit.dao.FeelDao;
@@ -36,8 +37,8 @@ public class UpdateWareFrame extends JFrame {
 	private JLabel postNumLabel;
 	private JTextField retailTextField;
 	private JButton closeButton;
-	Ware ware = null;
-	WareDao dao = new WareDao();
+	cuit.edu.BEAN.Ware ware = null;
+	cuit.edu.DAO.WareDao dao=new WareDaoImpl();;
 
 	/**
 	 * Create the frame.
@@ -139,9 +140,9 @@ public class UpdateWareFrame extends JFrame {
 				String member = memberTextField.getText();	
 				String spec = specTextField.getText();
 				String stock = stockTextField.getText();
-				float memberPrice =0;
-				float unitPrice = 0;
-				float retailPrice = 0;
+				Double memberPrice =0.0;
+				Double unitPrice = 0.0;
+				Double retailPrice = 0.0;
 				if((cName.equals(""))||(bewrite.equals(""))||(unit.equals(""))||
 						(retail.equals(""))||(member.equals(""))){
 					JOptionPane.showMessageDialog(getContentPane(), "将带星号的信息填写完整！",
@@ -149,9 +150,9 @@ public class UpdateWareFrame extends JFrame {
 					return;
 				}
 				try{
-					unitPrice = Float.parseFloat(unit);
-					retailPrice = Float.parseFloat(retail);
-					memberPrice = Float.parseFloat(member);
+					unitPrice =Double.parseDouble(unit);
+					retailPrice = Double.parseDouble(retail);
+					memberPrice = Double.parseDouble(member);
 					
 				}catch (Exception ee) {
 					JOptionPane.showMessageDialog(getContentPane(), "进货价、零售价、会员价必须是数字！",

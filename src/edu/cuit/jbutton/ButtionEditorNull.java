@@ -12,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.JoinDepot;
 import edu.cuit.bean.Stock;
 import edu.cuit.dao.DepotDao;
@@ -24,7 +25,7 @@ public class ButtionEditorNull extends DefaultCellEditor {
 	  protected JButton button;
 	  private String    label;
 	  private boolean   isPushed;
-	  private StockDao dao = new StockDao();
+	  private cuit.edu.DAO.StockDao dao=new StockDaoImpl();;
 	  public ButtionEditorNull(JCheckBox checkBox) {
 	    super(checkBox);
 	    button = new JButton();

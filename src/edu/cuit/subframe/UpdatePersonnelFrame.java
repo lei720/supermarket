@@ -15,6 +15,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 
+import cuit.edu.DAO.PersonalDao;
+import edu.cuit.DAOIMPL.PersonalDaoImpl;
 import edu.cuit.bean.BasicMessage;
 import edu.cuit.bean.Contact;
 import edu.cuit.bean.Dept;
@@ -41,9 +43,10 @@ public class UpdatePersonnelFrame extends JFrame {
 	private JTextField faxTextField;
 	private JTextField emailTextField;
 	private JTextField addressTextField;
-	private PersonnelDao dao = new PersonnelDao();
-	BasicMessage message = new BasicMessage();
-	Contact contact = new Contact();
+	private PersonalDao dao=new PersonalDaoImpl(); 
+	cuit.edu.BEAN.BasicMessage message = new cuit.edu.BEAN.BasicMessage();
+
+	cuit.edu.BEAN.Contact contact = new cuit.edu.BEAN.Contact();
 	int hid = 0;
 
 	/**
@@ -155,8 +158,10 @@ public class UpdatePersonnelFrame extends JFrame {
 		}
 		final JComboBox deptComboBox = new JComboBox(dName);
 		deptComboBox.setBackground(new Color(160, 82, 45));
-		Dept dept = dao.selectDepotById(message.getDept());
-		deptComboBox.setSelectedItem(dept.getdName());
+		System.out.println("messageid:"+message.getDept());
+		cuit.edu.BEAN.Dept dept = dao.selectDepotById(message.getDept());
+		System.out.println(dept);
+		deptComboBox.setSelectedItem(dept.getDname());
 		deptComboBox.setBounds(290, 65, 133, 21);
 		panel.add(deptComboBox);
 
@@ -166,7 +171,7 @@ public class UpdatePersonnelFrame extends JFrame {
 		List headName = dao.selectHeadship();
 		String headship[] = new String[headName.size()];
 		for (int j = 0; j < headName.size(); j++) {
-			Headship headshi = (Headship) headName.get(j);
+			cuit.edu.BEAN.Headship headshi = (cuit.edu.BEAN.Headship) headName.get(j);
 			headship[j] = headshi.getHeadshipName();
 		}
 		final JComboBox headshipComboBox = new JComboBox(headship);
@@ -323,7 +328,7 @@ public class UpdatePersonnelFrame extends JFrame {
 		insertbutton.setBackground(new Color(210, 105, 30));
 		insertbutton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Contact contact = new Contact();
+				cuit.edu.BEAN.Contact contact = new cuit.edu.BEAN.Contact();
 				String name = nameTextField.getText();
 				hid = dao.selectBasicMessageByName(name);
 				contact.setHid(hid);

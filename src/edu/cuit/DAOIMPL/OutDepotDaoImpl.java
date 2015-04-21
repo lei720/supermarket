@@ -25,8 +25,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		query.setInteger(0, id);
 		query.executeUpdate();
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		/*session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 
 	@Override
@@ -36,8 +36,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		session.beginTransaction();
 		session.save(depot);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 	// 定义按货品名称查询货品重量方法
 	@Override
@@ -51,13 +51,14 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		query.setString(0, wName);
 		query.setInteger(1, did);
 		List<Float> list=query.list();
+		session.getTransaction().commit();
 		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			float1 = (Float) iterator.next();
 			return float1;
 		}
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return float1;
 		
 	}
@@ -74,8 +75,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 			arrayList.add(outDepot);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 		
 	}
@@ -94,8 +95,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 			arrayList.add(outDepot);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		/*session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -108,14 +109,15 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		Query query=session.createQuery(sql);
 		query.setInteger(0, id);
 		List<OutDepot> list=query.list();
+		session.getTransaction().commit();
 		ArrayList<OutDepot> arrayList=new ArrayList<OutDepot>();
-		for (Iterator iterator = arrayList.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			OutDepot outDepot = (OutDepot) iterator.next();
 			return outDepot;
 		}
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return null;
 	}
 
@@ -134,8 +136,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 			arrayList.add(outDepot);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -144,7 +146,7 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		String sql=" select wareName from OutDepot where  did=?";
+		String sql=" select wname from OutDepot where  did=?";
 		Query query=session.createQuery(sql);
 		query.setInteger(0, did);
 		List<String> list=query.list();
@@ -153,8 +155,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 			arrayList.add(wareName);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 		return arrayList;
 	}
 
@@ -183,8 +185,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		query.setInteger(1, did);
 		query.setString(3, wName);
 		query.executeUpdate();*/
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 
 	@Override
@@ -212,8 +214,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		query.setInteger(1, did);
 		query.setString(3, wName);
 		query.executeUpdate();*/
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 
 	@Override
@@ -223,8 +225,8 @@ public class OutDepotDaoImpl implements OutDepotDao {
 		session.beginTransaction();
 		session.update(depot);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	/*	session.close();
+		HibernateUtil.closeSessionFactory();*/
 	}
 
 }

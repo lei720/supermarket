@@ -65,7 +65,7 @@ public class DepotDao {
 		}
 		return depot;
 	}
-
+	
 	// 定义按仓库管理员查询仓库信息方法
 	public List selectDepotByManage(String manage) {
 		

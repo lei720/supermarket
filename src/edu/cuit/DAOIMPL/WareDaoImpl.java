@@ -7,6 +7,8 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 
+import org.hibernate.Transaction;
+
 import cuit.edu.DAO.WareDao;
 import cuit.edu.BEAN.Ware;
 import edu.cuit.util.HibernateUtil;
@@ -27,15 +29,15 @@ public class WareDaoImpl implements WareDao {
 		query.setFloat(6, ware.getAssociatorPrice());	*/
 		session.save(ware);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		//session.close();
+		//HibernateUtil.closeSessionFactory();
 	}
 
 	@Override
 	public List selectWare() {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+	session.beginTransaction();
 		String sql="from Ware";
 		Query query=session.createQuery(sql);
 		List<Ware> list=query.list();
@@ -44,8 +46,9 @@ public class WareDaoImpl implements WareDao {
 			arrayList.add(ware);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	ts.commit();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 		return arrayList;
 	}
 
@@ -58,12 +61,13 @@ public class WareDaoImpl implements WareDao {
 		Query query=session.createQuery(sql);
 		query.setInteger(0, id);
 		List<Ware> list=query.list();
+		session.getTransaction().commit();
 		while (list.iterator().hasNext()) {
 			Ware ware=(Ware) list.iterator().next();
 			return ware;
 		}
-		session.getTransaction().commit();
-		HibernateUtil.getSessionFactory().close();
+	
+	//	HibernateUtil.getSessionFactory().close();
 		return null;
 	}
 
@@ -81,8 +85,8 @@ public class WareDaoImpl implements WareDao {
 			arrayList.add(ware);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		//session.close();
+		//HibernateUtil.closeSessionFactory();
 		return arrayList;
 	}
 
@@ -93,8 +97,8 @@ public class WareDaoImpl implements WareDao {
 		session.beginTransaction();
 		session.update(ware);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	@Override
@@ -107,8 +111,8 @@ public class WareDaoImpl implements WareDao {
 		query.setInteger(0, id);
 		query.executeUpdate();
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	

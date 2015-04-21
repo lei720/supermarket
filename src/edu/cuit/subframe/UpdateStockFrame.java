@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Sell;
 import edu.cuit.bean.Stock;
@@ -43,8 +44,8 @@ public class UpdateStockFrame extends JFrame {
 	private JLabel label_3;
 	private JLabel label_4;
 	private JLabel label_5;
-	private Stock stock;
-	private StockDao dao = new StockDao();	
+	private cuit.edu.BEAN.Stock stock;
+	private cuit.edu.DAO.StockDao stockDao=new StockDaoImpl();	
 	/**
 	 * Create the frame.
 	 */
@@ -56,13 +57,19 @@ public class UpdateStockFrame extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		//System.out.println("column="+column);
+		//int count1=Integer.parseInt(column);
+	//	System.out.println("count1="+count1);
+	//	System.out.println(stock.toString());
+		//System.out.println(stock.getOrderId());
 		try {
 			  File file = new File("filedd.txt");				//创建文件对象
 	          FileInputStream fin = new FileInputStream(file);	//创建文件输入流对象
 	          int count =  fin.read();      					//读取文件中数据
-	          stock = dao.selectStockByid(count);				//调用按编号查询数据方法
+	          stock =stockDao.selectStockByid(count);				//调用按编号查询数据方法
 	          file.delete();	         						//删除文件
-	        } catch (Exception e) {	          
+	          fin.close();
+		} catch (Exception e) {	          
 	            e.printStackTrace();
 	    }	     
 		JLabel orderIdLabel = new JLabel("订单号：");
@@ -70,6 +77,7 @@ public class UpdateStockFrame extends JFrame {
 		contentPane.add(orderIdLabel);
 		orderIdTextField = new JTextField();					//创建文本框对象
 		orderIdTextField.setBackground(new Color(210, 105, 30));
+	
 		orderIdTextField.setText(stock.getOrderId());			//设置文本框对象内容
 		orderIdTextField.setBounds(114, 50, 164, 25);
 		contentPane.add(orderIdTextField);						//将文本框对象添加到面板中
@@ -81,7 +89,7 @@ public class UpdateStockFrame extends JFrame {
 
 		nameTextField = new JTextField();
 		nameTextField.setBackground(new Color(210, 105, 30));
-		nameTextField.setText(stock.getsName());
+		nameTextField.setText(stock.getSname());
 		nameTextField.setColumns(10);
 		nameTextField.setBounds(385, 50, 164, 25);
 		contentPane.add(nameTextField);
@@ -134,7 +142,8 @@ public class UpdateStockFrame extends JFrame {
 		insertButton.setBackground(new Color(210, 105, 30));
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StockDao dao = new StockDao();					//创建保存有修改方法的类对象
+			//	StockDao dao = new StockDao();					//创建保存有修改方法的类对象
+				cuit.edu.DAO.StockDao dao=new StockDaoImpl();
 				String oId = orderIdTextField.getText();		//获取用户填写订单数据
 				String wname = nameTextField.getText();			//获取用户填写的客户名信息
 				String wDate = dateTextField.getText();			//获取用户填写的交货日期信息
@@ -142,7 +151,7 @@ public class UpdateStockFrame extends JFrame {
 				String bName = wNameTextField.getText();
 				String money = moneyTextField.getText();			
 				int countIn = 0;
-				float fmoney = 0;
+				Double fmoney = 0.0;
 				if((oId.equals(""))||(wname.equals("")) ||(wDate.equals("")) ||	
 					(count.equals("")) || (money.equals(""))){	//判断用户是否将信息添加完整
 					JOptionPane.showMessageDialog(getContentPane(), "请将带星号的内容填写完整！",
@@ -151,13 +160,13 @@ public class UpdateStockFrame extends JFrame {
 				}
 				try{
 					countIn	= Integer.parseInt(count);			//将用户填写的数量转换为整数
-					fmoney = Float.parseFloat(money);
+					fmoney = Double.parseDouble(money);
 				}catch (Exception ee) {
 					JOptionPane.showMessageDialog(getContentPane(), "要输入数字！",
 							"信息提示框", JOptionPane.INFORMATION_MESSAGE);	//如果有异常抛出给出提示信息
 					return;	
 				}
-				stock.setsName(wname);							//将设置采购订货信息属性
+				stock.setSname(wname);							//将设置采购订货信息属性
 				stock.setBaleName(bName);
 				stock.setConsignmentDate(wDate);
 				stock.setCount(count);

@@ -13,6 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JButton;
 import javax.swing.UIManager;
 
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Sell;
 import edu.cuit.bean.Stock;
@@ -120,7 +121,8 @@ JButton insertButton = new JButton("添加");
 insertButton.setBackground(new Color(210, 105, 30));
 insertButton.addActionListener(new ActionListener() {
 	public void actionPerformed(ActionEvent e) {
-		StockDao dao = new StockDao();					//定义操作数据表方法
+		//StockDao dao = new StockDao();					//定义操作数据表方法
+		cuit.edu.DAO.StockDao dao=new StockDaoImpl();
 		String oId = orderIdTextField.getText();		//获取用户添加的订单号
 		String wname = nameTextField.getText();			//获取用户添加的客户名称
 		String wDate = dateTextField.getText();			//获取用户添加的交货日期
@@ -128,7 +130,7 @@ insertButton.addActionListener(new ActionListener() {
 		String bName = wNameTextField.getText();		//获取用户添加的货品名称
 		String money = moneyTextField.getText();		//获取用户添加的货品金额		
 		int countIn = 0;
-		float fmoney = 0;
+		Double fmoney = 0.0;
 		if((oId.equals(""))||(wname.equals("")) ||(wDate.equals("")) ||
 			(count.equals("")) || (money.equals(""))){	//判断用户添加的信息是否完整
 			 new UIManager();
@@ -143,14 +145,15 @@ insertButton.addActionListener(new ActionListener() {
 		}
 		try{
 			countIn	= Integer.parseInt(count);			//将用户添加的数量转换为整型
-			fmoney = Float.parseFloat(money);
+			fmoney = Double.parseDouble(money);
 		}catch (Exception ee) {
 			JOptionPane.showMessageDialog(getContentPane(), "要输入数字！",
 					"信息提示框", JOptionPane.INFORMATION_MESSAGE);
 			return;	
 		}
-		Stock stock = new Stock();						//定义与数据表对应的JavaBean对象
-		stock.setsName(wname);							//设置对象属性
+		cuit.edu.BEAN.Stock stock = new cuit.edu.BEAN.Stock();						//定义与数据表对应的JavaBean对象
+		//stock.setSname(sname);
+		stock.setSname(wname);							//设置对象属性
 		stock.setBaleName(bName);
 		stock.setConsignmentDate(wDate);
 		stock.setCount(count);

@@ -10,6 +10,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
 
+import edu.cuit.DAOIMPL.SellDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Sell;
 import edu.cuit.dao.FeelDao;
@@ -160,8 +161,10 @@ public class InserSellFrame extends JFrame {
 		insertButton.setBackground(new Color(210, 105, 30));
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SellDao sellDao = new SellDao();
-				Sell sell = new Sell();				
+			//	SellDao sellDao = new SellDao();
+				cuit.edu.DAO.SellDao sellDao=new SellDaoImpl();
+			//	Sell sell = new Sell();		
+				cuit.edu.BEAN.Sell sell=new cuit.edu.BEAN.Sell();
 				String sellName = cNameTextField.getText();
 				String address = addressTextField.getText();
 				String linkName = linkNameTextField.getText();
@@ -187,8 +190,8 @@ public class InserSellFrame extends JFrame {
 				sell.setLinkman(linkName);
 				sell.setLinkPhone(linkPhone);
 				sell.setNetAddress(eAddress);
-				sell.setEmallAddress(emaillTextField.getText());
-				sell.setRenark(remarkTextArea.getText());
+				sell.setEmaillAddress(emaillTextField.getText());
+				sell.setRemark(remarkTextArea.getText());
 				sellDao.insertSell(sell);
 				JOptionPane.showMessageDialog(getContentPane(), "数据添加成功！",
 						"信息提示框", JOptionPane.INFORMATION_MESSAGE);

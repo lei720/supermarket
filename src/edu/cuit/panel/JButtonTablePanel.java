@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import edu.cuit.subframe.InserStockFrame;
 import edu.cuit.subframe.UpdateDepotFrame;
 import edu.cuit.subframe.UpdateStockFrame;
+import edu.cuit.DAOIMPL.StockDaoImpl;
 import edu.cuit.bean.Stock;
 import edu.cuit.dao.StockDao;
 import edu.cuit.jbutton.ButtonEditor;
@@ -44,7 +45,7 @@ public class JButtonTablePanel extends JPanel {
            }  
 		 
 	 }*/;
-	 StockDao dao = new StockDao();
+	 cuit.edu.DAO.StockDao dao=new StockDaoImpl();
 	 private JTextField conditionTextField;
 	/**
 	 * Create the panel.
@@ -79,11 +80,12 @@ public class JButtonTablePanel extends JPanel {
 		    List list = dao.selectStock();
 	
 		    for(int i = 0;i<list.size();i++){
-		    	Stock stock = (Stock)list.get(i);
+		    	cuit.edu.BEAN.Stock stock = (cuit.edu.BEAN.Stock)list.get(i);
+		    	
 		    	String oid = stock.getOrderId();
 		    	int id = dao.selectJoinStockByOid(oid);	    	
 		    	if(id <=0){
-		    		 dm.addRow(new Object[]{"入库",stock.getId(),stock.getsName(),stock.getOrderId(),stock.getConsignmentDate(),stock.getBaleName(),
+		    		 dm.addRow(new Object[]{"入库",stock.getId(),stock.getSname(),stock.getOrderId(),stock.getConsignmentDate(),stock.getBaleName(),
 		    				 stock.getMoney(),stock.getCount()});
 		    		  File file = new File("files.txt");	    		  
 		    		 try {	    				
@@ -96,7 +98,7 @@ public class JButtonTablePanel extends JPanel {
 		    			}
 		    	}
 		    	else{
-		    		 dm.addRow(new Object[]{"已经入库",stock.getId(),stock.getsName(),stock.getOrderId(),stock.getConsignmentDate(),stock.getBaleName(),
+		    		 dm.addRow(new Object[]{"已经入库",stock.getId(),stock.getSname(),stock.getOrderId(),stock.getConsignmentDate(),stock.getBaleName(),
 		    				 stock.getMoney(),stock.getCount()});
 		    	}
 		    }

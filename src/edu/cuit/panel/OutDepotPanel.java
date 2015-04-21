@@ -28,6 +28,7 @@ import java.util.List;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
+import edu.cuit.DAOIMPL.OutDepotDaoImpl;
 import edu.cuit.bean.Depot;
 import edu.cuit.bean.JoinDepot;
 import edu.cuit.bean.OutDepot;
@@ -50,7 +51,8 @@ public class OutDepotPanel extends JPanel {
 	private JTextField dateTextField;
 	final OutDepotModel model = new OutDepotModel();
 	private JTable table_1;
-	private OutDepotDao dao = new OutDepotDao();
+	//private OutDepotDao dao = new OutDepotDao();
+	private cuit.edu.DAO.OutDepotDao dao=new OutDepotDaoImpl();
 	JComboBox comboBox ;
 	/**
 	 * Create the panel.
@@ -88,12 +90,12 @@ public class OutDepotPanel extends JPanel {
 				if(joinDate.equals("")){
 					List  list = dao.selectOutDepotByDid(Integer.parseInt(oid));
 					for(int i = 0;i<list.size();i++){
-						OutDepot outDepot = (OutDepot)list.get(i);
+						cuit.edu.BEAN.OutDepot outDepot = (cuit.edu.BEAN.OutDepot)list.get(i);
 						String dRemark = outDepot.getRemark();
 						if(dRemark.length()>4){
 							dRemark = dRemark.substring(0, 4)+"...";
 						}
-						model.addRow(new Object[] { outDepot.getId(),outDepot.getDid(),outDepot.getwName(),outDepot.getOutDate(),outDepot.getWight(),dRemark});
+						model.addRow(new Object[] { outDepot.getId(),outDepot.getDid(),outDepot.getWname(),outDepot.getOutDate(),outDepot.getWight(),dRemark});
 					}
 				}
 				else{
@@ -132,12 +134,12 @@ public class OutDepotPanel extends JPanel {
 	
 		table_1.setBackground(new Color(210, 105, 30));
 		for (int i = 0; i < list.size(); i++) {
-			OutDepot depot = (OutDepot)list.get(i);
+			cuit.edu.BEAN.OutDepot depot = (cuit.edu.BEAN.OutDepot)list.get(i);
 			String dRemark = depot.getRemark();
 			if(dRemark.length()>4){
 				dRemark = dRemark.substring(0, 4)+"...";
 			}
-			model.addRow(new Object[] { depot.getId(),depot.getDid(),depot.getwName(),depot.getOutDate(),depot.getWight(),dRemark});
+			model.addRow(new Object[] { depot.getId(),depot.getDid(),depot.getWname(),depot.getOutDate(),depot.getWight(),dRemark});
 		}
 		if (list.size()<=8) {
 			model.setRowCount(8);
@@ -150,7 +152,7 @@ public class OutDepotPanel extends JPanel {
 		insertButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				InserOutDepotFrame frame = new InserOutDepotFrame();
-				frame.setVisible(true);
+				//frame.setVisible(true);
 			}
 		});
 		insertButton.setBounds(180, 347, 66, 23);

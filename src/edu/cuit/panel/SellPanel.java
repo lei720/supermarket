@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
+import edu.cuit.DAOIMPL.SellDaoImpl;
 import edu.cuit.bean.Provide;
 import edu.cuit.bean.Sell;
 import edu.cuit.dao.FeelDao;
@@ -31,7 +32,8 @@ public class SellPanel extends JPanel {
 	private JTextField nameTextField;
 	private JTable table;
 	private JTextField addressTextField;
-	SellDao sellDao = new SellDao();
+//	SellDao sellDao = new SellDao();
+	cuit.edu.DAO.SellDao sellDao=new SellDaoImpl();
 	LocalTableModel model = new LocalTableModel();
 	/**
 	 * Create the panel.
@@ -84,24 +86,24 @@ public class SellPanel extends JPanel {
 				if((!name.equals(""))&&(address.equals(""))){
 					 List list = sellDao.selectsellByName(name);
 					 for(int i = 0;i<list.size();i++){
-						 Sell sell = (Sell)list.get(i);
+						 cuit.edu.BEAN.Sell sell = (cuit.edu.BEAN.Sell)list.get(i);
 						 model.addRow(new Object[] { sell.getId(), sell.getSellName(),
 								 sell.getAddress(), sell.getLinkman(),
 								 sell.getLinkPhone(), sell.getFaxNum(),
 								 sell.getPostNum(), sell.getBankNum(),
-								 sell.getNetAddress(), sell.getEmallAddress(),
+								 sell.getNetAddress(), sell.getEmaillAddress(),
 									sell.getRemark() });
 					 }
 				}
 				if((name.equals(""))&&(!address.equals(""))){
 					List list = sellDao.selectsellByAddress(address);
 					for(int i =0;i<list.size();i++){
-						 Sell sell = (Sell)list.get(i);
+						 cuit.edu.BEAN.Sell sell = (cuit.edu.BEAN.Sell)list.get(i);
 						 model.addRow(new Object[] { sell.getId(), sell.getSellName(),
 								 sell.getAddress(), sell.getLinkman(),
 								 sell.getLinkPhone(), sell.getFaxNum(),
 								 sell.getPostNum(), sell.getBankNum(),
-								 sell.getNetAddress(), sell.getEmallAddress(),
+								 sell.getNetAddress(), sell.getEmaillAddress(),
 								 sell.getRemark() });
 					}
 				}
@@ -192,12 +194,12 @@ public class SellPanel extends JPanel {
 		List list = sellDao.selectSell();
 		model.setRowCount(0);
 		for (int i = 0; i < list.size(); i++) {
-			 Sell sell = (Sell)list.get(i);
+			 cuit.edu.BEAN.Sell sell = ( cuit.edu.BEAN.Sell)list.get(i);
 			 model.addRow(new Object[] { sell.getId(), sell.getSellName(),
 					 sell.getAddress(), sell.getLinkman(),
 					 sell.getLinkPhone(), sell.getFaxNum(),
 					 sell.getPostNum(), sell.getBankNum(),
-					 sell.getNetAddress(), sell.getEmallAddress(),
+					 sell.getNetAddress(), sell.getEmaillAddress(),
 					 sell.getRemark() });
 		}
 		scrollPane_2.setViewportView(table);

@@ -21,8 +21,9 @@ public class StockDaoImpl implements StockDao {
 		session.beginTransaction();
 		session.save(stock);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+		//session.getTransaction().commit();
+		//session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	
@@ -39,9 +40,9 @@ public class StockDaoImpl implements StockDao {
 		for (Stock stock : list) {
 			arrayList.add(stock);
 		}
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+   	session.getTransaction().commit();
+	//	session.close();
+	//.closeSessionFactory();
 		return arrayList;
 	}
 
@@ -50,16 +51,21 @@ public class StockDaoImpl implements StockDao {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
-		String sql=" select id from joinDepot where oid=?";
+		String sql=" select id from JoinDepot where oid=?";
 		Query query=session.createQuery(sql);
 		query.setString(0, oid);
 		List<Integer> list=query.list();
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
-		return list.get(0);
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+			Integer integer = (Integer) iterator.next();
+			return integer;
+		}
+	
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
+	//	return list.get(0);
 		
-		
+		return -1;
 	
 	}
 
@@ -77,7 +83,7 @@ public class StockDaoImpl implements StockDao {
 			arrayList.add(stock);
 		}
 		session.getTransaction().commit();
-		session.close();
+	//	session.close();
 		HibernateUtil.closeSessionFactory();
 		return arrayList;
 	}
@@ -96,8 +102,8 @@ public class StockDaoImpl implements StockDao {
 			arrayList.add(stock);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 		return arrayList;
 	}
 
@@ -115,8 +121,8 @@ public class StockDaoImpl implements StockDao {
 			arrayList.add(stock);
 		}
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 		return arrayList;
 	}
 
@@ -129,14 +135,15 @@ public class StockDaoImpl implements StockDao {
 		Query query=session.createQuery(sql);
 		query.setInteger(0, id);
 		List<Stock> list=query.list();
-		ArrayList<Stock> arrayList=new ArrayList<Stock>();
-		for (Iterator iterator = arrayList.iterator(); iterator.hasNext();) {
+		session.getTransaction().commit();
+	//	ArrayList<Stock> arrayList=new ArrayList<Stock>();
+		for (Iterator iterator = list.iterator(); iterator.hasNext();) {
 			Stock stock = (Stock) iterator.next();
 			return stock;
 		}
-		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.getTransaction().commit();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 		return null;
 	}
 
@@ -147,22 +154,23 @@ public class StockDaoImpl implements StockDao {
 		session.beginTransaction();
 		session.update(stock);
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	@Override
 	public void deleteStock(int id) {
 		// TODO Auto-generated method stub
 		Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+    	session.beginTransaction();
 		String sql="delete Stock as s where s.id=?";
 		Query query=session.createQuery(sql);
 		query.setInteger(0, id);
 		query.executeUpdate();
 		session.getTransaction().commit();
-		session.close();
-		HibernateUtil.closeSessionFactory();
+	//	session.getTransaction().commit();
+	//	session.close();
+	//	HibernateUtil.closeSessionFactory();
 	}
 
 	

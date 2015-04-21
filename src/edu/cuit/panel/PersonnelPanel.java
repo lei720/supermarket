@@ -23,6 +23,7 @@ import java.util.List;
 
 import javax.swing.JScrollPane;
 
+import edu.cuit.DAOIMPL.PersonalDaoImpl;
 import edu.cuit.bean.BasicMessage;
 import edu.cuit.bean.Contact;
 import edu.cuit.bean.Dept;
@@ -35,17 +36,19 @@ import edu.cuit.subframe.UpdatePersonnelFrame;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.JRadioButton;
+
+import cuit.edu.DAO.PersonalDao;
 public class PersonnelPanel extends JPanel {
 	final JoinDepotModel model = new JoinDepotModel();
-	private final PersonnelDao perdao = new PersonnelDao();
+	private final PersonalDao perdao = new PersonalDaoImpl();
 	private JTextField nameTextField;
 	private JTextField ageTextField;
 	private JComboBox pNameComboBox = new JComboBox();
 	JPanel contactpanel;
-	private Contact contact = new Contact();
+	private cuit.edu.BEAN.Contact contact = new cuit.edu.BEAN.Contact();
 	JPanel panel_1 = new JPanel();	
 	JPanel contentPanel = new JPanel();
-	private BasicMessage message = new BasicMessage();
+	private cuit.edu.BEAN.BasicMessage message = new cuit.edu.BEAN.BasicMessage();
 	private JRadioButton manRadioButton;
 	private JRadioButton wradioButton ;
 	private JTextField deptField;
@@ -172,8 +175,23 @@ jlist.addListSelectionListener(new ListSelectionListener() {
 			}
 			if(value.equals("联系方式")){
 				panel_1.remove(bpanel);
-				panel_1.add(particular);					
+				panel_1.add(particular);	
+			cuit.edu.BEAN.BasicMessage	message2 = perdao.selectBNameById(dNamecomboBox.getSelectedItem().toString(),pNameComboBox.getSelectedItem().toString());
+				pId = message.getId();
+				System.out.println("pid="+pId);
 				contact = perdao.selectContactById(pId);
+				if (contact==null) {
+					contact=new cuit.edu.BEAN.Contact();
+					contact.setContact("");
+					contact.setEmail("");
+					contact.setFaddress("");
+					contact.setFax("");
+					contact.setHid(pId);
+					contact.setOfficePhone("");
+					PersonalDao psd=new PersonalDaoImpl();
+					psd.insertContact(contact);
+				}
+				System.out.println("contact="+contact);
 				pnoneTextField.setText(contact.getContact());
 				officeTextField.setText(contact.getOfficePhone());
 				faxTextField.setText(contact.getFax());
@@ -242,6 +260,7 @@ deleteButton.addActionListener(new ActionListener() {
 			pId = message.getId();
 		   if(n == JOptionPane.YES_OPTION){ 			//如果用户确认信息
 			   perdao.deleteBasicMessage(pId);			//调用删除数据方法
+			  perdao.deleteContact(pId);
 			   pNameComboBox.removeAllItems();
 			   repaint();
 		   }
